@@ -8,10 +8,12 @@ import com.ru.springboot3.model.User;
 import com.ru.springboot3.model.UserExample;
 import com.ru.springboot3.service.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class CostServiceImp implements CostService {
     @Autowired
     private UserMapper userMapper;

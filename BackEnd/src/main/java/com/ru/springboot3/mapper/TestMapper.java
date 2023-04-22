@@ -3,8 +3,10 @@ package com.ru.springboot3.mapper;
 import com.ru.springboot3.model.Test;
 import com.ru.springboot3.model.TestExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface TestMapper {
     long countByExample(TestExample example);
 

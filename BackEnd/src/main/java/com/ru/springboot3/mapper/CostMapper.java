@@ -3,8 +3,12 @@ package com.ru.springboot3.mapper;
 import com.ru.springboot3.model.Cost;
 import com.ru.springboot3.model.CostExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+
+@Mapper
 public interface CostMapper {
     long countByExample(CostExample example);
 

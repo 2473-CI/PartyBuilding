@@ -7,12 +7,14 @@ import com.ru.springboot3.model.User;
 import com.ru.springboot3.model.UserExample;
 import com.ru.springboot3.service.ExpandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class ExpandServiceImp implements ExpandService {
     @Autowired
     private ExpandMapper expandMapper;

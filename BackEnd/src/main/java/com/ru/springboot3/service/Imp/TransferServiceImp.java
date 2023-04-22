@@ -4,7 +4,9 @@ import com.ru.springboot3.mapper.TransferMapper;
 import com.ru.springboot3.model.Transfer;
 import com.ru.springboot3.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TransferServiceImp implements TransferService {
     @Autowired
     private TransferMapper transferMapper;

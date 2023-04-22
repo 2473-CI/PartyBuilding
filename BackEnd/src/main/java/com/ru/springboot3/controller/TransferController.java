@@ -3,7 +3,6 @@ package com.ru.springboot3.controller;
 import com.ru.springboot3.mapper.TransferMapper;
 import com.ru.springboot3.model.Result;
 import com.ru.springboot3.model.Transfer;
-import com.ru.springboot3.model.TransferExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +27,12 @@ public class TransferController {
         }
     }
 
-    @Autowired
-    private Result<List<Transfer>> getStart(@RequestBody Transfer transfer){
-        if(transfer.getFrombelongto() == null){
-            return Result.error("缺少关键信息！");
-        }
-        return null;
-    }
+//    @Autowired
+//    private Result<List<Transfer>> getStart(@RequestBody Transfer transfer){
+//        if(transfer.getFrombelongto() == null){
+//            return Result.error("缺少关键信息！");
+//        }
+//        return null;
+//    }
 
 }
