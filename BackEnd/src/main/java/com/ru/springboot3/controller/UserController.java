@@ -42,7 +42,7 @@ public class UserController {
         return Result.success(user);
     }
 
-    @GetMapping("/getList")
+    @PostMapping("/getList")
     public Result<List<User>> getList(@RequestBody User user,
                                       @RequestParam(value = "page", defaultValue = "1") int page,
                                       @RequestParam(value = "size", defaultValue = "20") int size){
