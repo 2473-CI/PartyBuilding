@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.springboot3.mapper.LifeMapper">
+  <resultMap id="BaseResultMap" type="com.ru.springboot3.model.Life">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lifeTitle" jdbcType="VARCHAR" property="lifetitle" />
+    <result column="lifeSubTitle" jdbcType="VARCHAR" property="lifesubtitle" />
+    <result column="belongTo" jdbcType="VARCHAR" property="belongto" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.springboot3.model.Life">
+    <result column="lifeContext" jdbcType="LONGVARCHAR" property="lifecontext" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, lifeTitle, lifeSubTitle, belongTo
+  </sql>
+  <sql id="Blob_Column_List">
+    lifeContext
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ru.springboot3.model.LifeExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from life
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ru.springboot3.model.LifeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from life
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from life
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from life
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ru.springboot3.model.LifeExample">
+    delete from life
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ru.springboot3.model.Life">
+    insert into life (id, lifeTitle, lifeSubTitle, 
+      belongTo, lifeContext)
+    values (#{id,jdbcType=INTEGER}, #{lifetitle,jdbcType=VARCHAR}, #{lifesubtitle,jdbcType=VARCHAR}, 
+      #{belongto,jdbcType=VARCHAR}, #{lifecontext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.springboot3.model.Life">
+    insert into life
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lifetitle != null">
+        lifeTitle,
+      </if>
+      <if test="lifesubtitle != null">
+        lifeSubTitle,
+      </if>
+      <if test="belongto != null">
+        belongTo,
+      </if>
+      <if test="lifecontext != null">
+        lifeContext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lifetitle != null">
+        #{lifetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="lifesubtitle != null">
+        #{lifesubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="belongto != null">
+        #{belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="lifecontext != null">
+        #{lifecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ru.springboot3.model.LifeExample" resultType="java.lang.Long">
+    select count(*) from life
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update life
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.lifetitle != null">
+        lifeTitle = #{record.lifetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lifesubtitle != null">
+        lifeSubTitle = #{record.lifesubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongto != null">
+        belongTo = #{record.belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lifecontext != null">
+        lifeContext = #{record.lifecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update life
+    set id = #{record.id,jdbcType=INTEGER},
+      lifeTitle = #{record.lifetitle,jdbcType=VARCHAR},
+      lifeSubTitle = #{record.lifesubtitle,jdbcType=VARCHAR},
+      belongTo = #{record.belongto,jdbcType=VARCHAR},
+      lifeContext = #{record.lifecontext,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update life
+    set id = #{record.id,jdbcType=INTEGER},
+      lifeTitle = #{record.lifetitle,jdbcType=VARCHAR},
+      lifeSubTitle = #{record.lifesubtitle,jdbcType=VARCHAR},
+      belongTo = #{record.belongto,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.springboot3.model.Life">
+    update life
+    <set>
+      <if test="lifetitle != null">
+        lifeTitle = #{lifetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="lifesubtitle != null">
+        lifeSubTitle = #{lifesubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="belongto != null">
+        belongTo = #{belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="lifecontext != null">
+        lifeContext = #{lifecontext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ru.springboot3.model.Life">
+    update life
+    set lifeTitle = #{lifetitle,jdbcType=VARCHAR},
+      lifeSubTitle = #{lifesubtitle,jdbcType=VARCHAR},
+      belongTo = #{belongto,jdbcType=VARCHAR},
+      lifeContext = #{lifecontext,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.springboot3.model.Life">
+    update life
+    set lifeTitle = #{lifetitle,jdbcType=VARCHAR},
+      lifeSubTitle = #{lifesubtitle,jdbcType=VARCHAR},
+      belongTo = #{belongto,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

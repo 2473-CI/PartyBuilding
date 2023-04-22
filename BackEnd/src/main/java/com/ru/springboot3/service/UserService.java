@@ -16,4 +16,8 @@ public interface UserService {
     public void update(User user);
 
     public void delete(User user);
+
+    List<User> toBeDeveloped(User user);
+
+    List<User> partyMember(User user);
 }

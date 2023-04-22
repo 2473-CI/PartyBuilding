@@ -78,4 +78,14 @@ public class UserController {
             return Result.error("删除失败！");
         }
     }
+
+    @PostMapping("/toBeDeveloped")
+    public Result<List<User>> toBeDeveloped(@RequestBody User user){
+        return Result.success(userServiceImp.toBeDeveloped(user));
+    }
+
+    @PostMapping("/partyMember")
+    public Result<List<User>> partyMember(@RequestBody User user){
+        return Result.success(userServiceImp.partyMember(user));
+    }
 }

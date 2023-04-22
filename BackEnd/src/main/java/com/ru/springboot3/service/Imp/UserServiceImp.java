@@ -79,4 +79,14 @@ public class UserServiceImp implements UserService {
     public void delete(User user) {
         userMapper.deleteByPrimaryKey(user.getId());
     }
+
+    @Override
+    public List<User> toBeDeveloped(User user) {
+        return userMapper.toBeDeveloped(user);
+    }
+
+    @Override
+    public List<User> partyMember(User user) {
+        return userMapper.partyMember(user);
+    }
 }

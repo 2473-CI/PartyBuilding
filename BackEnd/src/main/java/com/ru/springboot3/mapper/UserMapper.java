@@ -6,9 +6,29 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper {
+
+    @Select("""
+        SELECT *
+        FROM `user`
+        WHERE `role` = '发展党员' AND belongTo=#{belongTo}
+        AND `id` NOT IN (
+          SELECT `to`
+          FROM `expand`
+        )
+        """)
+    List<User> toBeDeveloped(User user);
+
+    @Select("""
+       SELECT *
+        FROM `user`
+        WHERE (`role` = '党员' OR `role` = '基层支部书记' OR `role` = '分团委老师') AND belongTo=#{belongTo}
+        """)
+    List<User> partyMember(User user);
+
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
