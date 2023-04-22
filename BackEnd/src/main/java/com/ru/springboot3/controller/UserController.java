@@ -54,7 +54,8 @@ public class UserController {
         }else {
             users = new ArrayList<>();
         }
-        Result<List<User>> result = Result.success(users.subList((page - 1) * size, page * size));
+//        if()10,
+        Result<List<User>> result = Result.success(users.subList((page - 1) * size, Math.min(page * size, users.size())));
         result.setSize(users.size());
         return result;
     }
