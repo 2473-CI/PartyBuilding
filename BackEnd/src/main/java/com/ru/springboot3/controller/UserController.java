@@ -4,7 +4,9 @@ import com.ru.springboot3.service.Imp.UserServiceImp;
 import com.ru.springboot3.model.Result;
 import com.ru.springboot3.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,27 @@ public class UserController {
             return Result.error("当前账号已存在！");
         }
         return Result.success(user);
+    }
+
+    @PostMapping("/updateAndInsert")
+    public Result updateAndInsert(@RequestBody User user){
+        if(user.getId() == null){
+            if(user.getIdentitycard() == null || user.getUsername() == null){
+                return Result.error("省份证号码不能为空！");
+            }
+            user = userServiceImp.register(user);
+            if(user == null){
+                return Result.error("当前账号已存在！");
+            }
+            return Result.success(user);
+        }else{
+            try {
+                userServiceImp.update(user);
+                return Result.success("更新成功！");
+            }catch (Exception err){
+                return Result.error("更新失败！");
+            }
+        }
     }
 
     @PostMapping("/getList")
