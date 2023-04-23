@@ -14,7 +14,7 @@ public interface UserMapper {
     @Select("""
         SELECT *
         FROM `user`
-        WHERE `role` = '发展党员' AND belongTo=#{belongTo}
+        WHERE `role` = '发展党员' AND belongTo=#{belongto}
         AND `id` NOT IN (
           SELECT `to`
           FROM `expand`
@@ -25,7 +25,7 @@ public interface UserMapper {
     @Select("""
        SELECT *
         FROM `user`
-        WHERE (`role` = '党员' OR `role` = '基层支部书记' OR `role` = '分团委老师') AND belongTo=#{belongTo}
+        WHERE (`role` = '党员' OR `role` = '基层支部书记' OR `role` = '分团委老师') AND belongTo=#{belongto}
         """)
     List<User> partyMember(User user);
 

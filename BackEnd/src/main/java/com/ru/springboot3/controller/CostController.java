@@ -56,7 +56,7 @@ public class CostController {
         }catch (Exception err){
             return Result.error("查询失败！");
         }
-        Result<List<Cost>> res = Result.success(costs.subList((page - 1) * size, page * size));
+        Result<List<Cost>> res = Result.success(costs.subList((page - 1) * size, Math.min(page * size, costs.size())));
         res.setSize(costs.size());
         return res;
     }

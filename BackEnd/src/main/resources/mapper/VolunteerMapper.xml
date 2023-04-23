@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.springboot3.mapper.VolunteerMapper">
+  <resultMap id="BaseResultMap" type="com.ru.springboot3.model.Volunteer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
+    <result column="partyId" jdbcType="VARCHAR" property="partyid" />
+    <result column="startTime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endTime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="volunteerAddress" jdbcType="VARCHAR" property="volunteeraddress" />
+    <result column="volunteerContext" jdbcType="VARCHAR" property="volunteercontext" />
+    <result column="volunteerTitle" jdbcType="VARCHAR" property="volunteertitle" />
+    <result column="belongTo" jdbcType="VARCHAR" property="belongto" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `user`, partyId, startTime, endTime, volunteerAddress, volunteerContext, volunteerTitle, 
+    belongTo
+  </sql>
+  <select id="selectByExample" parameterType="com.ru.springboot3.model.VolunteerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from volunteer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from volunteer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from volunteer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ru.springboot3.model.VolunteerExample">
+    delete from volunteer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ru.springboot3.model.Volunteer">
+    insert into volunteer (id, `user`, partyId, 
+      startTime, endTime, volunteerAddress, 
+      volunteerContext, volunteerTitle, belongTo
+      )
+    values (#{id,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR}, #{partyid,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{volunteeraddress,jdbcType=VARCHAR}, 
+      #{volunteercontext,jdbcType=VARCHAR}, #{volunteertitle,jdbcType=VARCHAR}, #{belongto,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.springboot3.model.Volunteer">
+    insert into volunteer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="user != null">
+        `user`,
+      </if>
+      <if test="partyid != null">
+        partyId,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="volunteeraddress != null">
+        volunteerAddress,
+      </if>
+      <if test="volunteercontext != null">
+        volunteerContext,
+      </if>
+      <if test="volunteertitle != null">
+        volunteerTitle,
+      </if>
+      <if test="belongto != null">
+        belongTo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="partyid != null">
+        #{partyid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="volunteeraddress != null">
+        #{volunteeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="volunteercontext != null">
+        #{volunteercontext,jdbcType=VARCHAR},
+      </if>
+      <if test="volunteertitle != null">
+        #{volunteertitle,jdbcType=VARCHAR},
+      </if>
+      <if test="belongto != null">
+        #{belongto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ru.springboot3.model.VolunteerExample" resultType="java.lang.Long">
+    select count(*) from volunteer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update volunteer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.user != null">
+        `user` = #{record.user,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partyid != null">
+        partyId = #{record.partyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null">
+        endTime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.volunteeraddress != null">
+        volunteerAddress = #{record.volunteeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.volunteercontext != null">
+        volunteerContext = #{record.volunteercontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.volunteertitle != null">
+        volunteerTitle = #{record.volunteertitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongto != null">
+        belongTo = #{record.belongto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update volunteer
+    set id = #{record.id,jdbcType=INTEGER},
+      `user` = #{record.user,jdbcType=VARCHAR},
+      partyId = #{record.partyid,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=TIMESTAMP},
+      endTime = #{record.endtime,jdbcType=TIMESTAMP},
+      volunteerAddress = #{record.volunteeraddress,jdbcType=VARCHAR},
+      volunteerContext = #{record.volunteercontext,jdbcType=VARCHAR},
+      volunteerTitle = #{record.volunteertitle,jdbcType=VARCHAR},
+      belongTo = #{record.belongto,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.springboot3.model.Volunteer">
+    update volunteer
+    <set>
+      <if test="user != null">
+        `user` = #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="partyid != null">
+        partyId = #{partyid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="volunteeraddress != null">
+        volunteerAddress = #{volunteeraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="volunteercontext != null">
+        volunteerContext = #{volunteercontext,jdbcType=VARCHAR},
+      </if>
+      <if test="volunteertitle != null">
+        volunteerTitle = #{volunteertitle,jdbcType=VARCHAR},
+      </if>
+      <if test="belongto != null">
+        belongTo = #{belongto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.springboot3.model.Volunteer">
+    update volunteer
+    set `user` = #{user,jdbcType=VARCHAR},
+      partyId = #{partyid,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      volunteerAddress = #{volunteeraddress,jdbcType=VARCHAR},
+      volunteerContext = #{volunteercontext,jdbcType=VARCHAR},
+      volunteerTitle = #{volunteertitle,jdbcType=VARCHAR},
+      belongTo = #{belongto,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

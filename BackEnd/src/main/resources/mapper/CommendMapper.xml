@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.springboot3.mapper.CommendMapper">
+  <resultMap id="BaseResultMap" type="com.ru.springboot3.model.Commend">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="commendTitle" jdbcType="VARCHAR" property="commendtitle" />
+    <result column="partyName" jdbcType="VARCHAR" property="partyname" />
+    <result column="commendUserId" jdbcType="VARCHAR" property="commenduserid" />
+    <result column="commendUserName" jdbcType="VARCHAR" property="commendusername" />
+    <result column="commendContext" jdbcType="VARCHAR" property="commendcontext" />
+    <result column="commendTime" jdbcType="TIMESTAMP" property="commendtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.springboot3.model.Commend">
+    <result column="commendCause" jdbcType="LONGVARCHAR" property="commendcause" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, commendTitle, partyName, commendUserId, commendUserName, commendContext, commendTime
+  </sql>
+  <sql id="Blob_Column_List">
+    commendCause
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ru.springboot3.model.CommendExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from commend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ru.springboot3.model.CommendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from commend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from commend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from commend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ru.springboot3.model.CommendExample">
+    delete from commend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ru.springboot3.model.Commend">
+    insert into commend (id, commendTitle, partyName, 
+      commendUserId, commendUserName, commendContext, 
+      commendTime, commendCause)
+    values (#{id,jdbcType=INTEGER}, #{commendtitle,jdbcType=VARCHAR}, #{partyname,jdbcType=VARCHAR}, 
+      #{commenduserid,jdbcType=VARCHAR}, #{commendusername,jdbcType=VARCHAR}, #{commendcontext,jdbcType=VARCHAR}, 
+      #{commendtime,jdbcType=TIMESTAMP}, #{commendcause,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.springboot3.model.Commend">
+    insert into commend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="commendtitle != null">
+        commendTitle,
+      </if>
+      <if test="partyname != null">
+        partyName,
+      </if>
+      <if test="commenduserid != null">
+        commendUserId,
+      </if>
+      <if test="commendusername != null">
+        commendUserName,
+      </if>
+      <if test="commendcontext != null">
+        commendContext,
+      </if>
+      <if test="commendtime != null">
+        commendTime,
+      </if>
+      <if test="commendcause != null">
+        commendCause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="commendtitle != null">
+        #{commendtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="partyname != null">
+        #{partyname,jdbcType=VARCHAR},
+      </if>
+      <if test="commenduserid != null">
+        #{commenduserid,jdbcType=VARCHAR},
+      </if>
+      <if test="commendusername != null">
+        #{commendusername,jdbcType=VARCHAR},
+      </if>
+      <if test="commendcontext != null">
+        #{commendcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="commendtime != null">
+        #{commendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commendcause != null">
+        #{commendcause,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ru.springboot3.model.CommendExample" resultType="java.lang.Long">
+    select count(*) from commend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update commend
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.commendtitle != null">
+        commendTitle = #{record.commendtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partyname != null">
+        partyName = #{record.partyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commenduserid != null">
+        commendUserId = #{record.commenduserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commendusername != null">
+        commendUserName = #{record.commendusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commendcontext != null">
+        commendContext = #{record.commendcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commendtime != null">
+        commendTime = #{record.commendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.commendcause != null">
+        commendCause = #{record.commendcause,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update commend
+    set id = #{record.id,jdbcType=INTEGER},
+      commendTitle = #{record.commendtitle,jdbcType=VARCHAR},
+      partyName = #{record.partyname,jdbcType=VARCHAR},
+      commendUserId = #{record.commenduserid,jdbcType=VARCHAR},
+      commendUserName = #{record.commendusername,jdbcType=VARCHAR},
+      commendContext = #{record.commendcontext,jdbcType=VARCHAR},
+      commendTime = #{record.commendtime,jdbcType=TIMESTAMP},
+      commendCause = #{record.commendcause,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update commend
+    set id = #{record.id,jdbcType=INTEGER},
+      commendTitle = #{record.commendtitle,jdbcType=VARCHAR},
+      partyName = #{record.partyname,jdbcType=VARCHAR},
+      commendUserId = #{record.commenduserid,jdbcType=VARCHAR},
+      commendUserName = #{record.commendusername,jdbcType=VARCHAR},
+      commendContext = #{record.commendcontext,jdbcType=VARCHAR},
+      commendTime = #{record.commendtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.springboot3.model.Commend">
+    update commend
+    <set>
+      <if test="commendtitle != null">
+        commendTitle = #{commendtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="partyname != null">
+        partyName = #{partyname,jdbcType=VARCHAR},
+      </if>
+      <if test="commenduserid != null">
+        commendUserId = #{commenduserid,jdbcType=VARCHAR},
+      </if>
+      <if test="commendusername != null">
+        commendUserName = #{commendusername,jdbcType=VARCHAR},
+      </if>
+      <if test="commendcontext != null">
+        commendContext = #{commendcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="commendtime != null">
+        commendTime = #{commendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commendcause != null">
+        commendCause = #{commendcause,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ru.springboot3.model.Commend">
+    update commend
+    set commendTitle = #{commendtitle,jdbcType=VARCHAR},
+      partyName = #{partyname,jdbcType=VARCHAR},
+      commendUserId = #{commenduserid,jdbcType=VARCHAR},
+      commendUserName = #{commendusername,jdbcType=VARCHAR},
+      commendContext = #{commendcontext,jdbcType=VARCHAR},
+      commendTime = #{commendtime,jdbcType=TIMESTAMP},
+      commendCause = #{commendcause,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.springboot3.model.Commend">
+    update commend
+    set commendTitle = #{commendtitle,jdbcType=VARCHAR},
+      partyName = #{partyname,jdbcType=VARCHAR},
+      commendUserId = #{commenduserid,jdbcType=VARCHAR},
+      commendUserName = #{commendusername,jdbcType=VARCHAR},
+      commendContext = #{commendcontext,jdbcType=VARCHAR},
+      commendTime = #{commendtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

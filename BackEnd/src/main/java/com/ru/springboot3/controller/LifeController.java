@@ -1,11 +1,9 @@
 package com.ru.springboot3.controller;
 
-import com.ru.springboot3.mapper.LifeMapper;
 import com.ru.springboot3.model.Life;
 import com.ru.springboot3.model.Result;
 import com.ru.springboot3.model.User;
 import com.ru.springboot3.service.LifeService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +33,7 @@ public class LifeController {
         }else {
             lives = new ArrayList<>();
         }
-        Result<List<Life>> result = Result.success(lives.subList((page - 1) * size, page * size));
+        Result<List<Life>> result = Result.success(lives.subList((page - 1) * size, Math.min(page * size, lives.size())));
         result.setSize(lives.size());
         return result;
     }
@@ -66,7 +64,7 @@ public class LifeController {
         }
     }
 
-    @Delete("/delete")
+    @DeleteMapping("/delete")
     public Result<String> delete(@RequestBody Life life){
         if (life.getId() == null){
             return Result.error("Id不能为空！");

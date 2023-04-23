@@ -35,14 +35,14 @@ public class ExpandController {
         }else {
             maps = new ArrayList<>();
         }
-        Result<List<Map>> result = Result.success(maps.subList((page - 1) * size, page * size));
+        Result<List<Map>> result = Result.success(maps.subList((page - 1) * size, Math.min(page * size, maps.size())));
         result.setSize(maps.size());
         return result;
     }
 
 
     @DeleteMapping("/delete")
-    public Result<String> delete(Expand expand){
+    public Result<String> delete(@RequestBody  Expand expand){
         if(expand.getId() == null){
             return Result.error("id不能为空");
         }
@@ -55,7 +55,11 @@ public class ExpandController {
     }
 
     @PostMapping("insert")
-    public Result<String> insert(Expand expand) {
+    public Result<String> insert(@RequestBody Expand expand) {
+
+        System.out.println("From:"+expand.getFrom());
+        System.out.println("To:"+expand.getTo());
+        System.out.println("Createtime:"+expand.getCreatetime());
         if(expand.getFrom() == null || expand.getTo() == null || expand.getCreatetime() == null){
             return Result.error("相关字段不能为空");
         }
