@@ -32,10 +32,10 @@ public class StudyServiceImp implements StudyService {
 
     @Override
     public List<Study> selectByBelongTo(Study study) {
-        StudyExample studyExample = new StudyExample();
-        StudyExample.Criteria criteria = studyExample.createCriteria();
-        criteria.andBelongtoEqualTo(study.getBelongto());
-        return studyMapper.selectByExample(studyExample);
+//        StudyExample studyExample = new StudyExample();
+//        StudyExample.Criteria criteria = studyExample.createCriteria();
+//        criteria.andBelongtoEqualTo(study.getBelongto());
+        return studyMapper.selectByBelong(study);
     }
 
     @Override

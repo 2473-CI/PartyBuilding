@@ -53,7 +53,7 @@ public class StudyController {
         try {
             return Result.success(studyServiceImp.selectByBelongTo(study));
         }catch (Exception err){
-            return Result.error("获取失败！");
+            return Result.error("获取失败！"+err);
         }
     }
 
