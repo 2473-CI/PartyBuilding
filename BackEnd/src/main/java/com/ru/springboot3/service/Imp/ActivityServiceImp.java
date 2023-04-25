@@ -36,9 +36,10 @@ public class ActivityServiceImp implements ActivityService {
 
     @Override
     public List<Activity> selectByBelongTo(Activity activity) {
-        ActivityExample activityExample = new ActivityExample();
-        ActivityExample.Criteria criteria = activityExample.createCriteria();
-        criteria.andBelongtoEqualTo(activity.getBelongto());
-        return activityMapper.selectByExample(activityExample);
+//        ActivityExample activityExample = new ActivityExample();
+//        ActivityExample.Criteria criteria = activityExample.createCriteria();
+//        criteria.andBelongtoEqualTo(activity.getBelongto());
+//        System.out.println(activityMapper.selectByExample(activityExample));
+        return activityMapper.selectByBelong(activity);
     }
 }

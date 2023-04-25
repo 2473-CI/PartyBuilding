@@ -64,8 +64,9 @@ public class ActivityController {
         List<Activity> activities;
         try {
             activities = activityServiceImp.selectByBelongTo(activity);
+//        System.out.println(activities);
         }catch (Exception err){
-            return Result.error("查询失败");
+            return Result.error("查询失败"+err.getMessage());
         }
         Result<List<Activity>> res = Result.success(activities.subList((page-1)*size, Math.min(page*size, activities.size())));
         res.setSize(activities.size());
