@@ -46,7 +46,7 @@ public class ExpandServiceImp implements ExpandService {
             map.put(user.getId(), user);
         }
         for (Expand expand : expands){
-            Integer id = expand.getId();
+            Integer id = expand.getFrom();
             User user = map.get(id);
             if (user == null){
                 continue;
