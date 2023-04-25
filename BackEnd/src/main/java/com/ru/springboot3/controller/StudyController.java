@@ -50,11 +50,11 @@ public class StudyController {
 
     @PostMapping("/getList")
     public Result<List<Study>> getList(@RequestBody Study study){
-        try {
+//        try {
             return Result.success(studyServiceImp.selectByBelongTo(study));
-        }catch (Exception err){
-            return Result.error("获取失败！"+err);
-        }
+//        }catch (Exception err){
+//            return Result.error("获取失败！"+err);
+//        }
     }
 
 }

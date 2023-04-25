@@ -91,6 +91,7 @@ com\ru\springboot3\model\ActivityExample$Criterion.class
 com\ru\springboot3\mapper\VolunteerMapper.class
 com\ru\springboot3\service\Imp\CommendServiceImp.class
 com\ru\springboot3\model\CostExample$Criterion.class
+com\ru\springboot3\controller\FileController.class
 com\ru\springboot3\model\CommendExample$GeneratedCriteria.class
 com\ru\springboot3\service\CostService.class
 com\ru\springboot3\controller\TransferController.class
