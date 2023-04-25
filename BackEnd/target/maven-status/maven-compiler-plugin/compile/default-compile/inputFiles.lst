@@ -3,7 +3,9 @@ D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\mapper\Com
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\ActivityServiceImp.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\CostService.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\VolunteerService.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Examination.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\CostServiceImp.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\ExaminationServiceImp.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\UserService.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Life.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\TransferServiceImp.java
@@ -44,12 +46,14 @@ D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Im
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\controller\FileController.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Transfer.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\CostExample.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\ExaminationService.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\SpringBoot3Application.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\CommendService.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Cost.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Help.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\mapper\VolunteerMapper.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\HelpServiceImp.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\mapper\ExaminationMapper.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\mapper\TransferMapper.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\mapper\StudyMapper.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\controller\CostController.java
@@ -60,8 +64,10 @@ D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\controller
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Expand.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\ExpandServiceImp.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\RoleExample.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\controller\ExaminationController.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\TestExample.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\Imp\RoleServiceImp.java
+D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\ExaminationExample.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\CommendExample.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\model\Result.java
 D:\Programming\PartyBuilding\BackEnd\src\main\java\com\ru\springboot3\service\ExpandService.java

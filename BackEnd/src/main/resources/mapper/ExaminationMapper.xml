@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.springboot3.mapper.ExaminationMapper">
+  <resultMap id="BaseResultMap" type="com.ru.springboot3.model.Examination">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="examinationtitle" jdbcType="VARCHAR" property="examinationtitle" />
+    <result column="examinationstarttime" jdbcType="TIMESTAMP" property="examinationstarttime" />
+    <result column="examinationendtime" jdbcType="TIMESTAMP" property="examinationendtime" />
+    <result column="source" jdbcType="DOUBLE" property="source" />
+    <result column="belongto" jdbcType="VARCHAR" property="belongto" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.springboot3.model.Examination">
+    <result column="examination" jdbcType="LONGVARCHAR" property="examination" />
+    <result column="examinationsubmit" jdbcType="LONGVARCHAR" property="examinationsubmit" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, examinationtitle, examinationstarttime, examinationendtime, `source`, belongto
+  </sql>
+  <sql id="Blob_Column_List">
+    examination, examinationsubmit
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ru.springboot3.model.ExaminationExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from examination
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ru.springboot3.model.ExaminationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from examination
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from examination
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from examination
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ru.springboot3.model.ExaminationExample">
+    delete from examination
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ru.springboot3.model.Examination">
+    insert into examination (id, examinationtitle, examinationstarttime, 
+      examinationendtime, `source`, belongto, 
+      examination, examinationsubmit)
+    values (#{id,jdbcType=INTEGER}, #{examinationtitle,jdbcType=VARCHAR}, #{examinationstarttime,jdbcType=TIMESTAMP}, 
+      #{examinationendtime,jdbcType=TIMESTAMP}, #{source,jdbcType=DOUBLE}, #{belongto,jdbcType=VARCHAR}, 
+      #{examination,jdbcType=LONGVARCHAR}, #{examinationsubmit,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.springboot3.model.Examination">
+    insert into examination
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examinationtitle != null">
+        examinationtitle,
+      </if>
+      <if test="examinationstarttime != null">
+        examinationstarttime,
+      </if>
+      <if test="examinationendtime != null">
+        examinationendtime,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="belongto != null">
+        belongto,
+      </if>
+      <if test="examination != null">
+        examination,
+      </if>
+      <if test="examinationsubmit != null">
+        examinationsubmit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="examinationtitle != null">
+        #{examinationtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationstarttime != null">
+        #{examinationstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examinationendtime != null">
+        #{examinationendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=DOUBLE},
+      </if>
+      <if test="belongto != null">
+        #{belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="examination != null">
+        #{examination,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="examinationsubmit != null">
+        #{examinationsubmit,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ru.springboot3.model.ExaminationExample" resultType="java.lang.Long">
+    select count(*) from examination
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update examination
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.examinationtitle != null">
+        examinationtitle = #{record.examinationtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examinationstarttime != null">
+        examinationstarttime = #{record.examinationstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.examinationendtime != null">
+        examinationendtime = #{record.examinationendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.source != null">
+        `source` = #{record.source,jdbcType=DOUBLE},
+      </if>
+      <if test="record.belongto != null">
+        belongto = #{record.belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examination != null">
+        examination = #{record.examination,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.examinationsubmit != null">
+        examinationsubmit = #{record.examinationsubmit,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update examination
+    set id = #{record.id,jdbcType=INTEGER},
+      examinationtitle = #{record.examinationtitle,jdbcType=VARCHAR},
+      examinationstarttime = #{record.examinationstarttime,jdbcType=TIMESTAMP},
+      examinationendtime = #{record.examinationendtime,jdbcType=TIMESTAMP},
+      `source` = #{record.source,jdbcType=DOUBLE},
+      belongto = #{record.belongto,jdbcType=VARCHAR},
+      examination = #{record.examination,jdbcType=LONGVARCHAR},
+      examinationsubmit = #{record.examinationsubmit,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update examination
+    set id = #{record.id,jdbcType=INTEGER},
+      examinationtitle = #{record.examinationtitle,jdbcType=VARCHAR},
+      examinationstarttime = #{record.examinationstarttime,jdbcType=TIMESTAMP},
+      examinationendtime = #{record.examinationendtime,jdbcType=TIMESTAMP},
+      `source` = #{record.source,jdbcType=DOUBLE},
+      belongto = #{record.belongto,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.springboot3.model.Examination">
+    update examination
+    <set>
+      <if test="examinationtitle != null">
+        examinationtitle = #{examinationtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationstarttime != null">
+        examinationstarttime = #{examinationstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examinationendtime != null">
+        examinationendtime = #{examinationendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=DOUBLE},
+      </if>
+      <if test="belongto != null">
+        belongto = #{belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="examination != null">
+        examination = #{examination,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="examinationsubmit != null">
+        examinationsubmit = #{examinationsubmit,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ru.springboot3.model.Examination">
+    update examination
+    set examinationtitle = #{examinationtitle,jdbcType=VARCHAR},
+      examinationstarttime = #{examinationstarttime,jdbcType=TIMESTAMP},
+      examinationendtime = #{examinationendtime,jdbcType=TIMESTAMP},
+      `source` = #{source,jdbcType=DOUBLE},
+      belongto = #{belongto,jdbcType=VARCHAR},
+      examination = #{examination,jdbcType=LONGVARCHAR},
+      examinationsubmit = #{examinationsubmit,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.springboot3.model.Examination">
+    update examination
+    set examinationtitle = #{examinationtitle,jdbcType=VARCHAR},
+      examinationstarttime = #{examinationstarttime,jdbcType=TIMESTAMP},
+      examinationendtime = #{examinationendtime,jdbcType=TIMESTAMP},
+      `source` = #{source,jdbcType=DOUBLE},
+      belongto = #{belongto,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
