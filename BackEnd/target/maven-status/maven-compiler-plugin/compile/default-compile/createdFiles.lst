@@ -2,6 +2,7 @@ com\ru\springboot3\service\Imp\CostServiceImp.class
 com\ru\springboot3\model\ExaminationExample$GeneratedCriteria.class
 com\ru\springboot3\model\LifeExample$GeneratedCriteria.class
 com\ru\springboot3\controller\LifeController.class
+com\ru\springboot3\mapper\InterviewMapper.class
 com\ru\springboot3\model\TransferExample$GeneratedCriteria.class
 com\ru\springboot3\model\UserExample.class
 com\ru\springboot3\model\UserExample$Criterion.class
@@ -31,6 +32,7 @@ com\ru\springboot3\model\Expand.class
 com\ru\springboot3\controller\HelpController.class
 com\ru\springboot3\service\CommendService.class
 com\ru\springboot3\service\Imp\ExaminationServiceImp.class
+com\ru\springboot3\service\InterviewService.class
 com\ru\springboot3\mapper\HelpMapper.class
 com\ru\springboot3\model\ExaminationExample$Criteria.class
 com\ru\springboot3\model\Cost.class
@@ -40,6 +42,8 @@ com\ru\springboot3\controller\RoleController.class
 com\ru\springboot3\model\LifeExample$Criteria.class
 com\ru\springboot3\model\VolunteerExample$Criteria.class
 com\ru\springboot3\mapper\UserMapper.class
+com\ru\springboot3\service\Imp\InterviewServiceImp.class
+com\ru\springboot3\controller\InterviewControllor.class
 com\ru\springboot3\model\RoleExample$GeneratedCriteria.class
 com\ru\springboot3\controller\VolunteerController.class
 com\ru\springboot3\model\RoleExample$Criterion.class
@@ -49,8 +53,10 @@ com\ru\springboot3\mapper\CommendMapper.class
 com\ru\springboot3\service\Imp\StudyServiceImp.class
 com\ru\springboot3\model\Life.class
 com\ru\springboot3\service\ExaminationService.class
+com\ru\springboot3\model\InterviewExample$Criterion.class
 com\ru\springboot3\model\TransferExample.class
 com\ru\springboot3\service\StudyService.class
+com\ru\springboot3\model\InterviewExample$GeneratedCriteria.class
 com\ru\springboot3\service\LifeService.class
 com\ru\springboot3\model\Study.class
 com\ru\springboot3\mapper\StudyMapper.class
@@ -71,9 +77,11 @@ com\ru\springboot3\model\ExaminationExample$Criterion.class
 com\ru\springboot3\service\UserService.class
 com\ru\springboot3\model\HelpExample.class
 com\ru\springboot3\model\Test.class
+com\ru\springboot3\model\InterviewExample.class
 com\ru\springboot3\model\TestExample$Criteria.class
 com\ru\springboot3\controller\ExpandController.class
 com\ru\springboot3\model\TransferExample$Criterion.class
+com\ru\springboot3\model\Interview.class
 com\ru\springboot3\model\StudyExample$Criterion.class
 com\ru\springboot3\model\TransferExample$Criteria.class
 com\ru\springboot3\mapper\ActivityMapper.class
@@ -100,6 +108,7 @@ com\ru\springboot3\model\ActivityExample$Criterion.class
 com\ru\springboot3\mapper\VolunteerMapper.class
 com\ru\springboot3\service\Imp\CommendServiceImp.class
 com\ru\springboot3\model\CostExample$Criterion.class
+com\ru\springboot3\model\InterviewExample$Criteria.class
 com\ru\springboot3\controller\FileController.class
 com\ru\springboot3\model\CommendExample$GeneratedCriteria.class
 com\ru\springboot3\service\CostService.class
