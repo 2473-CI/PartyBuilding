@@ -39,7 +39,7 @@ public class FileController {
             System.out.println("File Name: " + file.getOriginalFilename());
             System.out.println("Content Type: " + file.getContentType());
             System.out.println("File Size: " + file.getSize());
-            String fileName = Objects.requireNonNull(file.getContentType()).replace('/', '-') + "-" + Instant.now().toEpochMilli() +  file.getOriginalFilename() ;
+            String fileName =   Instant.now().toEpochMilli() +  file.getOriginalFilename() ;
             Path path = Paths.get(uploadDir + "/" + fileName);
             Files.write(path, file.getBytes());
             return ResponseEntity.ok(
