@@ -19,6 +19,19 @@ public class UserController {
     @Autowired
     private UserServiceImp userServiceImp;
 
+    @PostMapping("/getById")
+    public Result<User> getById(@RequestBody User user){
+        if(user.getId() == null){
+            return Result.error("缺少关键字段!");
+        }
+        try {
+            User user1 = userServiceImp.selectById(user);
+            return Result.success(user1);
+        }catch (Exception err){
+            return Result.error("获取失败！");
+        }
+    }
+
     @PostMapping("/login")
     public Result<User> login(@RequestBody User user){
         if(user.getPassword() == null || user.getUsername() == null){

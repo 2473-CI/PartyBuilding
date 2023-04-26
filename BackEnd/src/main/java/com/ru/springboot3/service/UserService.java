@@ -17,7 +17,9 @@ public interface UserService {
 
     public void delete(User user);
 
-    List<User> toBeDeveloped(User user);
+    public List<User> toBeDeveloped(User user);
 
-    List<User> partyMember(User user);
+    public List<User> partyMember(User user);
+
+    public User selectById(User user);
 }

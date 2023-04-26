@@ -89,4 +89,9 @@ public class UserServiceImp implements UserService {
     public List<User> partyMember(User user) {
         return userMapper.partyMember(user);
     }
+
+    @Override
+    public User selectById(User user) {
+        return userMapper.selectByPrimaryKey(user.getId());
+    }
 }

@@ -40,7 +40,7 @@ public class ActivityController {
         }
     }
 
-    @DeleteMapping("/update")
+    @DeleteMapping("/delete")
     public Result<String> delete(@RequestBody Activity activity){
         if(activity.getId() == null){
             return Result.error("缺失相关信息！");
