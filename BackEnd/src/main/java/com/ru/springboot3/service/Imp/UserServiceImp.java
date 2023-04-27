@@ -73,12 +73,12 @@ public class UserServiceImp implements UserService {
     @Override
     public void update(User user) {
         UserExample userExample = new UserExample();
-        boolean flag = true;
         {
             UserExample.Criteria criteria = userExample.createCriteria();
             criteria.andUsernameEqualTo(user.getUsername());
             List<User> users = userMapper.selectByExample(userExample);
-            if (users.size() != 0) {
+            if (users.size() != 0 || user.getId() != users.get(0).getId()) {
+//                user.setUsername(users.get(0).getUsername());
                 throw new RuntimeException("姓名存在！");
             }
         }
