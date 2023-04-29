@@ -8,6 +8,8 @@
     <result column="examinationendtime" jdbcType="TIMESTAMP" property="examinationendtime" />
     <result column="source" jdbcType="DOUBLE" property="source" />
     <result column="belongto" jdbcType="VARCHAR" property="belongto" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.springboot3.model.Examination">
     <result column="examination" jdbcType="LONGVARCHAR" property="examination" />
@@ -72,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, examinationtitle, examinationstarttime, examinationendtime, `source`, belongto
+    id, examinationtitle, examinationstarttime, examinationendtime, `source`, belongto, 
+    userid, username
   </sql>
   <sql id="Blob_Column_List">
     examination, examinationsubmit
@@ -128,10 +131,12 @@
   <insert id="insert" parameterType="com.ru.springboot3.model.Examination">
     insert into examination (id, examinationtitle, examinationstarttime, 
       examinationendtime, `source`, belongto, 
-      examination, examinationsubmit)
+      userid, username, examination, 
+      examinationsubmit)
     values (#{id,jdbcType=INTEGER}, #{examinationtitle,jdbcType=VARCHAR}, #{examinationstarttime,jdbcType=TIMESTAMP}, 
       #{examinationendtime,jdbcType=TIMESTAMP}, #{source,jdbcType=DOUBLE}, #{belongto,jdbcType=VARCHAR}, 
-      #{examination,jdbcType=LONGVARCHAR}, #{examinationsubmit,jdbcType=LONGVARCHAR})
+      #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{examination,jdbcType=LONGVARCHAR}, 
+      #{examinationsubmit,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ru.springboot3.model.Examination">
     insert into examination
@@ -153,6 +158,12 @@
       </if>
       <if test="belongto != null">
         belongto,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
       </if>
       <if test="examination != null">
         examination,
@@ -179,6 +190,12 @@
       </if>
       <if test="belongto != null">
         #{belongto,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="examination != null">
         #{examination,jdbcType=LONGVARCHAR},
@@ -215,6 +232,12 @@
       <if test="record.belongto != null">
         belongto = #{record.belongto,jdbcType=VARCHAR},
       </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
       <if test="record.examination != null">
         examination = #{record.examination,jdbcType=LONGVARCHAR},
       </if>
@@ -234,6 +257,8 @@
       examinationendtime = #{record.examinationendtime,jdbcType=TIMESTAMP},
       `source` = #{record.source,jdbcType=DOUBLE},
       belongto = #{record.belongto,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
       examination = #{record.examination,jdbcType=LONGVARCHAR},
       examinationsubmit = #{record.examinationsubmit,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -247,7 +272,9 @@
       examinationstarttime = #{record.examinationstarttime,jdbcType=TIMESTAMP},
       examinationendtime = #{record.examinationendtime,jdbcType=TIMESTAMP},
       `source` = #{record.source,jdbcType=DOUBLE},
-      belongto = #{record.belongto,jdbcType=VARCHAR}
+      belongto = #{record.belongto,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -270,6 +297,12 @@
       <if test="belongto != null">
         belongto = #{belongto,jdbcType=VARCHAR},
       </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
       <if test="examination != null">
         examination = #{examination,jdbcType=LONGVARCHAR},
       </if>
@@ -286,6 +319,8 @@
       examinationendtime = #{examinationendtime,jdbcType=TIMESTAMP},
       `source` = #{source,jdbcType=DOUBLE},
       belongto = #{belongto,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
       examination = #{examination,jdbcType=LONGVARCHAR},
       examinationsubmit = #{examinationsubmit,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -296,7 +331,9 @@
       examinationstarttime = #{examinationstarttime,jdbcType=TIMESTAMP},
       examinationendtime = #{examinationendtime,jdbcType=TIMESTAMP},
       `source` = #{source,jdbcType=DOUBLE},
-      belongto = #{belongto,jdbcType=VARCHAR}
+      belongto = #{belongto,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

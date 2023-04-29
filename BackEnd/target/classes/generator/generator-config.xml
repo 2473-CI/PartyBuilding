@@ -41,6 +41,6 @@
                              targetPackage="com.ru.springboot3.mapper"
                              type="XMLMAPPER"/>
 
-        <table tableName="Interview"></table>
+        <table tableName="examination"></table>
     </context>
 </generatorConfiguration>

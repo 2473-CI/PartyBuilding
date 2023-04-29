@@ -15,6 +15,10 @@ public class Examination {
 
     private String belongto;
 
+    private Integer userid;
+
+    private String username;
+
     private String examination;
 
     private String examinationsubmit;
@@ -67,6 +71,22 @@ public class Examination {
         this.belongto = belongto;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getExamination() {
         return examination;
     }
@@ -95,6 +115,8 @@ public class Examination {
         sb.append(", examinationendtime=").append(examinationendtime);
         sb.append(", source=").append(source);
         sb.append(", belongto=").append(belongto);
+        sb.append(", userid=").append(userid);
+        sb.append(", username=").append(username);
         sb.append(", examination=").append(examination);
         sb.append(", examinationsubmit=").append(examinationsubmit);
         sb.append("]");
