@@ -47,13 +47,19 @@ public class InterviewControllor {
 
 
     @PostMapping("/getList")
-    public Result<List<Interview>> getList(@RequestBody Interview interview){
+    public Result<List<Interview>> getList(@RequestBody Interview interview,
+                                           @RequestParam(value = "page", defaultValue = "1") int page,
+                                           @RequestParam(value = "size", defaultValue = "20") int size){
+        List<Interview> interviews;
         try {
-            List<Interview> interviews = interviewServiceImp.selectByBelongTo(interview);
-            return Result.success(interviews);
+            interviews = interviewServiceImp.selectByBelongTo(interview);
+
         }catch (Exception err){
             return Result.error("查询失败！");
         }
+        Result<List<Interview>> res = Result.success(interviews.subList((page-1)*size, Math.min(page*size, interviews.size())));
+        res.setSize(interviews.size());
+        return res;
     }
 
 }

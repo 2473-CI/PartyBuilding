@@ -15,6 +15,11 @@ public class ActivityServiceImp implements ActivityService {
     private ActivityMapper activityMapper;
 
     @Override
+    public void updateContext(Activity activity) {
+        activityMapper.updateContext(activity);
+    }
+
+    @Override
     public void insert(Activity activity) {
         activityMapper.insert(activity);
     }
@@ -23,6 +28,8 @@ public class ActivityServiceImp implements ActivityService {
     public void update(Activity activity) {
         activityMapper.updateByPrimaryKey(activity);
     }
+
+
 
     @Override
     public void delete(Activity activity) {

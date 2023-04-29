@@ -7,6 +7,8 @@ import java.util.List;
 
 @Service
 public interface ActivityService {
+    public void updateContext(Activity activity);
+
     public void insert(Activity activity);
 
     public void update(Activity activity);

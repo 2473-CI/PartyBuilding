@@ -33,7 +33,9 @@ public class ActivityController {
             return Result.error("缺失相关信息！");
         }
         try {
+            System.out.println(activity);
             activityServiceImp.update(activity);
+            activityServiceImp.updateContext(activity);
             return Result.success("修改成功");
         }catch (Exception err){
             return Result.error("修改失败");
