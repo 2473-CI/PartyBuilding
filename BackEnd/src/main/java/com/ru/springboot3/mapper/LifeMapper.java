@@ -6,11 +6,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 
 @Mapper
 public interface LifeMapper {
     long countByExample(LifeExample example);
+
+    @Update("""
+            UPDATE life SET lifeContext=#{lifecontext} WHERE id=#{id};
+        """)
+    public void updateContext(Life life);
 
     int deleteByExample(LifeExample example);
 

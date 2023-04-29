@@ -58,6 +58,7 @@ public class LifeController {
         }
         try {
             lifeService.update(life);
+            lifeService.updateContext(life);
             return Result.success("修改成功！");
         }catch (Exception err){
             return Result.error("修改失败！");

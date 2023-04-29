@@ -10,6 +10,8 @@ public interface LifeService {
 
     public void update(Life life);
 
+    public void updateContext(Life life);
+
     public void delete(Life life);
 
     public List<Life> selectAll();

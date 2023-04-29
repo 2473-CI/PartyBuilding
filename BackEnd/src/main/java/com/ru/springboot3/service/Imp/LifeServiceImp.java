@@ -25,6 +25,11 @@ public class LifeServiceImp implements LifeService {
     }
 
     @Override
+    public void updateContext(Life life) {
+        lifeMapper.updateContext(life);
+    }
+
+    @Override
     public void delete(Life life) {
         lifeMapper.deleteByPrimaryKey(life.getId());
     }
