@@ -31,9 +31,10 @@ public class ExaminationServiceImp implements ExaminationService {
 
     @Override
     public List<Examination> selectByBelongTo(Examination examination) {
-        ExaminationExample examinationExample = new ExaminationExample();
-        ExaminationExample.Criteria criteria = examinationExample.createCriteria();
-        criteria.andBelongtoEqualTo(examination.getBelongto());
-        return examinationMapper.selectByExample(examinationExample);
+//        ExaminationExample examinationExample = new ExaminationExample();
+//        ExaminationExample.Criteria criteria = examinationExample.createCriteria();
+//        criteria.andBelongtoEqualTo(examination.getBelongto());
+//        return examinationMapper.selectByExample(examinationExample);
+        return examinationMapper.selectByBelong(examination);
     }
 }

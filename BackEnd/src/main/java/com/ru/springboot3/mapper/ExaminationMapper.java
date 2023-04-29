@@ -4,8 +4,12 @@ import com.ru.springboot3.model.Examination;
 import com.ru.springboot3.model.ExaminationExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface ExaminationMapper {
+
+    @Select("SELECT * FROM examination WHERE belongto=#{belongto}")
+    List<Examination> selectByBelong(Examination examination);
     long countByExample(ExaminationExample example);
 
     int deleteByExample(ExaminationExample example);
