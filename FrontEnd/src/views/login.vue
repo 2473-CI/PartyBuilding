@@ -2,14 +2,30 @@
 import {UserFilled, Lock} from '@element-plus/icons-vue'
 import {reactive} from "vue";
 import CryptoJS from 'crypto-js';
-import axios from "axios";
+import {loginUser} from '../api/UserApi.js'
+import { ElMessage } from 'element-plus'
+import {useRouter} from 'vue-router'
 
-const loginFrom = reactive({username: "", password: ""})
+const router = useRouter()
 
-const login = () => {
-    console.log(loginFrom)
-    console.log(md5(loginFrom.password))
-    // axios.post()
+const loginForm = reactive({username: "", password: ""})
+
+const login = () =>{
+	loginUser({username:loginForm.username,
+	password:md5(loginForm.password)}).then(res=>{
+		if(res.code == 200){
+			 ElMessage({
+			    message: '登录成功',
+			    type: 'success',
+			  })
+			localStorage.setItem("token", JSON.stringify(res.data))
+			router.push('/life')
+			
+		}else{
+			 ElMessage.error(res.message)
+		}
+	})
+	
 }
 
 const getImg = (path) => {
@@ -35,14 +51,14 @@ const md5 = (str) => {
                 <el-icon id="input-icon">
                     <UserFilled/>
                 </el-icon>
-                <input v-model="loginFrom.username" placeholder="请输入账号"/>
+                <input v-model="loginForm.username" placeholder="请输入账号"/>
                 <el-divider id="input-divider"/>
             </div>
             <div id="input-box">
                 <el-icon id="input-icon">
                     <Lock/>
                 </el-icon>
-                <input v-model="loginFrom.password" type="password" placeholder="请输入密码"/>
+                <input v-model="loginForm.password" type="password" placeholder="请输入密码"/>
                 <el-divider id="input-divider"/>
             </div>
         </div>
@@ -58,7 +74,7 @@ const md5 = (str) => {
 #box {
     width: 100%;
     height: 100%;
-    background-size: 100vw 50vw;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-image: url("../assets/image/bg.jpg");
     display: flex;
